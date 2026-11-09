@@ -32,7 +32,9 @@ export default function Footer() {
         <div className="footer-col">
           <h4>Empresa</h4>
           <nav aria-label="Rodapé">
-            <Link to="/#inicio">Início</Link>
+            <Link to="/" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
+              Início
+            </Link>
             <Link to="/quem-somos">Quem somos</Link>
             <Link to="/#resultados">Resultados</Link>
             <Link to="/#faq">FAQ</Link>

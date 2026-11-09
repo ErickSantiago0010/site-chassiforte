@@ -71,12 +71,30 @@ export default function Header() {
 
       <div className="navbar">
         <div className="container navbar-inner">
-          <Link className="brand brand-bar" to="/#inicio" aria-label="Chassi Forte — início">
+          <Link
+            className="brand brand-bar"
+            to="/"
+            aria-label="Chassi Forte, início"
+            onClick={() => {
+              if (location.pathname === "/") {
+                window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+              }
+            }}
+          >
             <img src="/assets/images/logo.webp" alt="Chassi Forte Soluções Automotivas" width="140" height="96" />
           </Link>
 
           <nav className="nav" aria-label="Principal">
-            <Link className="brand brand-pill" to="/#inicio" aria-label="Chassi Forte — início">
+            <Link
+              className="brand brand-pill"
+              to="/"
+              aria-label="Chassi Forte, início"
+              onClick={() => {
+                if (location.pathname === "/") {
+                  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+                }
+              }}
+            >
               <img src="/assets/images/logo.webp" alt="" width="100" height="70" />
             </Link>
             <div className="nav-links">

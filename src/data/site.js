@@ -14,11 +14,52 @@ export const CONTACT = {
   district: "Venda Nova, Belo Horizonte - MG",
   cep: "CEP 31615-310",
   cnpj: "CNPJ 30.970.804/0001-84",
-  address: "R. Padre Pedro Pinto, 2065 — Venda Nova, BH",
+  address: "R. Padre Pedro Pinto, 2065, Venda Nova, BH",
   mapsHref:
     "https://maps.google.com/?q=R.+Padre+Pedro+Pinto,+2065+-+Venda+Nova,+Belo+Horizonte+-+MG",
   hours: "Seg a sex: 8h–18h · Sáb: 8h–12h",
 };
+
+export const BRANCHES = [
+  {
+    id: "bh",
+    city: "Belo Horizonte",
+    short: "BH",
+    state: "MG",
+    label: "Chassi Forte BH",
+    street: "R. Padre Pedro Pinto, 2065",
+    district: "Venda Nova, Belo Horizonte - MG",
+    cep: "31615-310",
+    phoneDisplay: "(31) 3656-2538",
+    phoneHref: "tel:+553136562538",
+    whatsapp: WA_BH_BASE,
+    lat: -19.810149,
+    lng: -43.968406,
+    mapsHref:
+      "https://maps.google.com/?q=R.+Padre+Pedro+Pinto,+2065+-+Venda+Nova,+Belo+Horizonte+-+MG",
+    embedSrc:
+      "https://maps.google.com/maps?q=Chassi+Forte+BH,+R.+Padre+Pedro+Pinto,+2065+-+Venda+Nova,+Belo+Horizonte+-+MG&ll=-19.810149,-43.968406&z=16&hl=pt-BR&output=embed",
+  },
+  {
+    id: "ce",
+    city: "Fortaleza",
+    short: "CE",
+    state: "CE",
+    label: "Chassi Forte Fortaleza",
+    street: "R. Pedro Veríssimo, 457",
+    district: "Passaré, Fortaleza - CE",
+    cep: "60861-680",
+    phoneDisplay: "(85) 3295-7268",
+    phoneHref: "tel:+558532957268",
+    whatsapp: WA_CE,
+    lat: -3.811865,
+    lng: -38.527344,
+    mapsHref:
+      "https://maps.google.com/?q=R.+Pedro+Ver%C3%ADssimo,+457+-+Passar%C3%A9,+Fortaleza+-+CE",
+    embedSrc:
+      "https://maps.google.com/maps?q=Chassi+Forte,+R.+Pedro+Ver%C3%ADssimo,+457+-+Passar%C3%A9,+Fortaleza+-+CE&ll=-3.811865,-38.527344&z=16&hl=pt-BR&output=embed",
+  },
+];
 
 export const NAV_LINKS = [
   { href: "/#resultados", label: "Resultados", hash: true, section: "resultados" },
@@ -121,7 +162,7 @@ export const SERVICES = [
   },
   {
     title: "Cambagem e caster",
-    text: "Quando o carro “não dá alinhamento”, corrigimos os ângulos de cambagem e cáster com precisão — sem adaptações agressivas — recuperando estabilidade e dirigibilidade.",
+    text: "Quando o carro “não dá alinhamento”, corrigimos os ângulos de cambagem e cáster com precisão, sem adaptações agressivas, recuperando estabilidade e dirigibilidade.",
     image: "/assets/images/servico-camber.webp",
     alt: "Ajuste de cambagem e caster",
   },
@@ -214,14 +255,14 @@ export const INSTAGRAM_POSTS = [
     code: "DXhfBdCEa7f",
     href: "https://www.instagram.com/reel/DXhfBdCEa7f/",
     image: "/assets/images/instagram/DXhfBdCEa7f.jpg",
-    label: "Hilux e Defender — recuperação estrutural",
+    label: "Hilux e Defender: recuperação estrutural",
     aria: "Abrir no Instagram: Hilux e Defender",
   },
   {
     code: "DcJR6V4xdWJ",
     href: "https://www.instagram.com/reel/DcJR6V4xdWJ/",
     image: "/assets/images/instagram/DcJR6V4xdWJ.jpg",
-    label: "Hilux SW4 — avaliação estrutural do chassi",
+    label: "Hilux SW4: avaliação estrutural do chassi",
     aria: "Abrir no Instagram: Hilux SW4",
   },
   {
@@ -242,14 +283,14 @@ export const INSTAGRAM_POSTS = [
     code: "DaNczVQRWLy",
     href: "https://www.instagram.com/reel/DaNczVQRWLy/",
     image: "/assets/images/instagram/DaNczVQRWLy.jpg",
-    label: "Troller — recuperação e soldagem do chassi",
+    label: "Troller: recuperação e soldagem do chassi",
     aria: "Abrir no Instagram: Troller",
   },
   {
     code: "DYUblXzxrXa",
     href: "https://www.instagram.com/reel/DYUblXzxrXa/",
     image: "/assets/images/instagram/DYUblXzxrXa.jpg",
-    label: "CR-V — recuperação de longarina",
+    label: "CR-V: recuperação de longarina",
     aria: "Abrir no Instagram: CR-V longarina",
   },
 ];
@@ -280,7 +321,7 @@ export const BLOG_POSTS = [
     tag: "Laudo",
     title: "Para que serve o laudo técnico de correção estrutural",
     excerpt:
-      "O laudo documenta medições e resultado da correção — útil para seguradoras, funilarias e tranquilidade do proprietário.",
+      "O laudo documenta medições e resultado da correção, útil para seguradoras, funilarias e tranquilidade do proprietário.",
   },
 ];
 

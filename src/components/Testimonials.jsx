@@ -33,7 +33,7 @@ export default function Testimonials() {
     <section className="section testimonials" id="depoimentos" aria-labelledby="depoimentos-title">
       <div className="container">
         <SectionHead title="Quem foi atendido recomenda" id="depoimentos-title">
-          Nota 4,9 em centenas de avaliações — honestidade e precisão no padrão de fábrica.
+          Nota 4,9 em centenas de avaliações: honestidade e precisão no padrão de fábrica.
         </SectionHead>
       </div>
 

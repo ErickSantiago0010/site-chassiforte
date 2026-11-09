@@ -6,6 +6,9 @@ import { IconCookie, IconGoogle, IconWhatsApp } from "./Icons";
 const COOKIE_KEY = "chassi-forte-cookies";
 const GOOGLE_REVIEW_URL =
   "https://search.google.com/local/writereview?placeid=ChIJ791WfAFPxwcRjv1mSyddcvg";
+const MOBILE_FAB_MQ = "(max-width: 640px)";
+const MOBILE_FAB_BASE = 16;
+const MOBILE_FAB_SIZE = 52;
 
 function readChoice() {
   try {
@@ -23,12 +26,58 @@ function writeChoice(value) {
   }
 }
 
+function useMobileFabDock() {
+  useEffect(() => {
+    const root = document.documentElement;
+    const media = window.matchMedia(MOBILE_FAB_MQ);
+
+    const clear = () => {
+      root.style.removeProperty("--fab-bottom");
+    };
+
+    const update = () => {
+      if (!media.matches) {
+        clear();
+        return;
+      }
+
+      const grid = document.querySelector(".footer-grid");
+      const bottom = document.querySelector(".footer-bottom");
+      if (!grid || !bottom) {
+        root.style.setProperty("--fab-bottom", `${MOBILE_FAB_BASE}px`);
+        return;
+      }
+
+      const gridBottom = grid.getBoundingClientRect().bottom;
+      const bottomTop = bottom.getBoundingClientRect().top;
+      const seamY = (gridBottom + bottomTop) / 2;
+      const nextBottom = Math.max(MOBILE_FAB_BASE, window.innerHeight - seamY - MOBILE_FAB_SIZE / 2);
+
+      root.style.setProperty("--fab-bottom", `${Math.round(nextBottom)}px`);
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    media.addEventListener("change", update);
+
+    return () => {
+      clear();
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      media.removeEventListener("change", update);
+    };
+  }, []);
+}
+
 export default function SiteWidgets() {
   const [choice, setChoice] = useState(() => readChoice());
   const [bannerOpen, setBannerOpen] = useState(() => !readChoice());
   const [tipVisible, setTipVisible] = useState(false);
   const scrolled = useScrolled(160);
   const decided = Boolean(choice);
+
+  useMobileFabDock();
 
   useEffect(() => {
     if (!decided || !scrolled) {
@@ -102,7 +151,7 @@ export default function SiteWidgets() {
 
             <div className="cookie-box">
               <p>
-                Essenciais ficam sempre ativos. Com a sua permissão, também usamos cookies de análise para melhorar a experiência —
+                Essenciais ficam sempre ativos. Com a sua permissão, também usamos cookies de análise para melhorar a experiência,
                 sem vender dados.
               </p>
             </div>

@@ -1,5 +1,6 @@
 import Hero from "../components/Hero";
 import Brands from "../components/Brands";
+import Stats from "../components/Stats";
 import Results from "../components/Results";
 import Services from "../components/Services";
 import Testimonials from "../components/Testimonials";
@@ -13,6 +14,7 @@ export default function Home() {
     <main id="conteudo">
       <Hero />
       <Brands />
+      <Stats />
       <Results />
       <Services />
       <Testimonials />

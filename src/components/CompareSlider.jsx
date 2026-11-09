@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { IconBroken, IconThumbsUp } from "./Icons";
 
 export default function CompareSlider({ before, after, beforeAlt, afterAlt }) {
   const trackRef = useRef(null);
@@ -74,9 +75,11 @@ export default function CompareSlider({ before, after, beforeAlt, afterAlt }) {
         </div>
 
         <span className="compare-label compare-label-after" style={{ opacity: afterOpacity }} aria-hidden="true">
+          <IconThumbsUp />
           Depois
         </span>
         <span className="compare-label compare-label-before" style={{ opacity: beforeOpacity }} aria-hidden="true">
+          <IconBroken />
           Antes
         </span>
 

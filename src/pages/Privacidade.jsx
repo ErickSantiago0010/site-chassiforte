@@ -47,7 +47,7 @@ export default function Privacidade() {
 
             <h3>7. Contato</h3>
             <p>
-              WhatsApp: (31) 3656-2538 · Endereço: R. Padre Pedro Pinto, 2065 — Venda Nova, Belo Horizonte/MG.
+              WhatsApp: (31) 3656-2538 · Endereço: R. Padre Pedro Pinto, 2065, Venda Nova, Belo Horizonte/MG.
             </p>
           </div>
         </div>

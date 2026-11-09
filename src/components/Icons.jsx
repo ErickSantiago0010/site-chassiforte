@@ -84,6 +84,24 @@ export function IconGoogle() {
   );
 }
 
+export function IconBroken({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M4.5 7.5 12 3l7.5 4.5v6.2c0 3.7-2.7 7-7.5 8.3-4.8-1.3-7.5-4.6-7.5-8.3z" />
+      <path d="m9 9.5 6 6M15 9.5l-6 6" />
+    </svg>
+  );
+}
+
+export function IconThumbsUp({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M7 11v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h3z" />
+      <path d="M7 11h5.2l.8-4.2A2.6 2.6 0 0 1 15.6 4h.2a1.8 1.8 0 0 1 1.7 2.4L16.5 11H20a2 2 0 0 1 2 2.3l-.8 5.2A2.5 2.5 0 0 1 18.7 21H7" />
+    </svg>
+  );
+}
+
 export function IconCookie() {
   return (
     <svg viewBox="0 0 48 48" aria-hidden="true">

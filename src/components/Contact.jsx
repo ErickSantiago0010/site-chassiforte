@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { SERVICE_OPTIONS, WA_BH_BASE } from "../data/site";
 import { useInView } from "../hooks/useInView";
 
@@ -8,6 +8,86 @@ const INITIAL = {
   servico: "",
   mensagem: "",
 };
+
+function ServiceSelect({ value, onChange, options }) {
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef(null);
+  const listId = useId();
+  const selected = options.find((option) => option === value) || "";
+
+  useEffect(() => {
+    if (!open) return undefined;
+
+    const onPointerDown = (event) => {
+      if (!rootRef.current?.contains(event.target)) setOpen(false);
+    };
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    window.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
+  return (
+    <div className={`contact-select${open ? " is-open" : ""}`} ref={rootRef}>
+      <button
+        type="button"
+        className="contact-select-trigger"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-controls={listId}
+        onClick={() => setOpen((current) => !current)}
+      >
+        <span className={selected ? "is-value" : "is-placeholder"}>{selected || "Selecione um serviço"}</span>
+        <span className="contact-select-chevron" aria-hidden="true" />
+      </button>
+
+      {open ? (
+        <ul className="contact-select-menu" id={listId} role="listbox">
+          {options.map((option) => (
+            <li key={option} role="option" aria-selected={option === value}>
+              <button
+                type="button"
+                className={`contact-select-option${option === value ? " is-active" : ""}`}
+                onClick={() => {
+                  onChange(option);
+                  setOpen(false);
+                }}
+              >
+                {option}
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      <select
+        className="contact-select-native"
+        name="servico"
+        required
+        value={value}
+        tabIndex={-1}
+        aria-hidden="true"
+        onChange={(event) => onChange(event.target.value)}
+      >
+        <option value="" disabled>
+          Selecione um serviço
+        </option>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
 
 export default function Contact() {
   const [form, setForm] = useState(INITIAL);
@@ -21,6 +101,11 @@ export default function Contact() {
 
   const onSubmit = (event) => {
     event.preventDefault();
+    if (!form.servico.trim()) {
+      setNote("Selecione um serviço de interesse.");
+      return;
+    }
+
     const text = [
       "Olá, Chassi Forte!",
       `Nome: ${form.nome.trim()}`,
@@ -56,7 +141,7 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                R. Padre Pedro Pinto, 2065 — Venda Nova, BH
+                R. Padre Pedro Pinto, 2065, Venda Nova, BH
               </a>
             </li>
             <li>
@@ -86,16 +171,11 @@ export default function Contact() {
           </label>
           <label>
             Serviço de interesse
-            <select name="servico" required value={form.servico} onChange={onChange}>
-              <option value="" disabled>
-                Selecione um serviço
-              </option>
-              {SERVICE_OPTIONS.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
+            <ServiceSelect
+              value={form.servico}
+              options={SERVICE_OPTIONS}
+              onChange={(value) => setForm((current) => ({ ...current, servico: value }))}
+            />
           </label>
           <label>
             Mensagem
@@ -107,7 +187,7 @@ export default function Contact() {
               onChange={onChange}
             />
           </label>
-          <button className="btn btn-solid btn-lg" type="submit">
+          <button className="btn btn-solid btn-lg contact-submit" type="submit">
             Enviar pelo WhatsApp
           </button>
           {note ? <p className="form-note">{note}</p> : null}
